@@ -18,8 +18,8 @@ Mode make.fun (dipakai grader):
 MAKEFUN_ENV_URL=<url env> python3 main.py
 ```
 
-Polling `GET {url}/state`, kirim langkah UCI via
-`POST {url}/move` (`{"move": "e2e4"}`). Tanpa env var, engine
+Loop `POST {url}/game {}` untuk game, kirim langkah via
+`POST {url}/move` (`{"game": n, "move": "e2e4"}`). Tanpa env var, engine
 masuk mode UCI (`uci`, `isready`, `position ...`, `go`, `quit`).
 Python 3.13, standard library saja. Tanpa API key / model call.
 
@@ -33,7 +33,7 @@ Python 3.13, standard library saja. Tanpa API key / model call.
 - Evaluasi: material + posisi (sentralisasi, pion maju, pion
   bebas, pasangan gajah +30, benteng baris ke-7, raja sembunyi di
   middlegame / aktif di endgame).
-- Deterministik: budget tetap **12.000 node/langkah** (bukan jam),
+- Deterministik: budget tetap **60.000 node/langkah** (bukan jam),
   tanpa randomness. ~1–2 detik/langkah; ~5.600–9.200 node/detik.
 - Anti-repetisi di root: posisi yang pernah muncul tak dipilih
   lagi bila ada alternatif.
